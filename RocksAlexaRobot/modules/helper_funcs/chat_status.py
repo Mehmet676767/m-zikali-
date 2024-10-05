@@ -123,8 +123,8 @@ def dev_plus(func):
                 pass
         else:
             update.effective_message.reply_text(
-                "This is a developer restricted command."
-                " You do not have permissions to run this."
+                "Bu, geliştiriciye özel bir komuttur.."
+                " Bunu çalıştırmak için izinleriniz yok."
             )
 
     return is_dev_plus_func
@@ -148,7 +148,7 @@ def sudo_plus(func):
                 pass
         else:
             update.effective_message.reply_text(
-                "Who dis non-admin telling me what to do? You want a punch?"
+                "Bana ne yapmam gerektiğini söyleyen bu yönetici olmayan kim? Bir tokat mı istiyorsun?"
             )
 
     return is_sudo_plus_func
@@ -185,7 +185,7 @@ def whitelist_plus(func):
             return func(update, context, *args, **kwargs)
         else:
             update.effective_message.reply_text(
-                f"You don't have access to use this.\nVisit @{SUPPORT_CHAT}"
+                f"Bunu kullanma izniniz yok\ngit @{SUPPORT_CHAT}"
             )
 
     return is_whitelist_plus_func
@@ -209,7 +209,7 @@ def user_admin(func):
                 pass
         else:
             update.effective_message.reply_text(
-                "Who dis non-admin telling me what to do? You want a punch?"
+                "Bana ne yapmam gerektiğini söyleyen bu yönetici olmayan kim? Bir tokat mı istiyorsun?"
             )
 
     return is_admin
@@ -263,7 +263,7 @@ def bot_admin(func):
         if update_chat_title == message_chat_title:
             not_admin = "I'm not admin! - REEEEEE"
         else:
-            not_admin = f"I'm not admin in <b>{update_chat_title}</b>! - REEEEEE"
+            not_admin = f"Burada yönetici değilim <b>{update_chat_title}</b>! - REEEEEE"
 
         if is_bot_admin(chat, bot.id):
             return func(update, context, *args, **kwargs)
@@ -282,9 +282,9 @@ def bot_can_delete(func):
         message_chat_title = update.effective_message.chat.title
 
         if update_chat_title == message_chat_title:
-            cant_delete = "I can't delete messages here!\nMake sure I'm admin and can delete other user's messages."
+            cant_delete = "Burada mesajları silemem!\nYönetici olduğumdan ve diğer kullanıcıların mesajlarını silebildiğimden emin olun."
         else:
-            cant_delete = f"I can't delete messages in <b>{update_chat_title}</b>!\nMake sure I'm admin and can delete other user's messages there."
+            cant_delete = f"Burada mesajları silemem <b>{update_chat_title}</b>!\nOrada benim yönetici olduğumdan ve diğer kullanıcıların mesajlarını silebildiğimden emin olun."
 
         if can_delete(chat, bot.id):
             return func(update, context, *args, **kwargs)
@@ -304,10 +304,10 @@ def can_pin(func):
 
         if update_chat_title == message_chat_title:
             cant_pin = (
-                "I can't pin messages here!\nMake sure I'm admin and can pin messages."
+                "Burada mesajları sabitleyemem./nYönetici olduğumdan ve mesajları sabitleyebildiğimden emin olun"
             )
         else:
-            cant_pin = f"I can't pin messages in <b>{update_chat_title}</b>!\nMake sure I'm admin and can pin messages there."
+            cant_pin = f"Burada mesajları sabitleyemem <b>{update_chat_title}</b>!\nOrada benim yönetici olduğumdan ve mesajları sabitleyebildiğimden emin olun."
 
         if chat.get_member(bot.id).can_pin_messages:
             return func(update, context, *args, **kwargs)
